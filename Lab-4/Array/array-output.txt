@@ -1,0 +1,9 @@
+Test Case 1: 
+56 a23 34 1.2 as$ 
+
+Test Case 2: 
+33.2 54.2 55.0 11a 22.3 
+
+Test Case 3: 
+b c a 
+
