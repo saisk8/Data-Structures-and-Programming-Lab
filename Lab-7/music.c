@@ -86,6 +86,13 @@ int winner(struct node *rear) {
 	printf("Replaced n - 1 elements, initiating musical chairs program\n");
 	while (p->next != p) {
 		srand(time(NULL));
+		if (count == 2) {
+			int unLucky = rand() % count;
+			if (unLucky == 0) 
+				return p->next->key;
+			else
+				return p->key;
+		}
     	int k = (rand() % count) + 1;
     	for (int i = 0; i < k - 1; i++) {
       		q = p;
@@ -102,13 +109,14 @@ int winner(struct node *rear) {
 }
 
 int main() {
+	FILE *p = fopen("input.txt", "r");
 	struct node *rear = NULL;
 	int key;
-	printf("Enter the number of participants: ");
-	scanf("%d", &n);
+	// printf("Enter the number of participants: ");
+	fscanf(p, "%d", &n);
 	for (int i = 0; i < n; i++) {
-		printf("Enter the key: ");
-		scanf("%d", &key);
+		// printf("Enter the key: ");
+		fscanf(p, "%d", &key);
 		rear = insert(rear, key);
 	}
 	printf("The winner is: %d\n", winner(rear));
