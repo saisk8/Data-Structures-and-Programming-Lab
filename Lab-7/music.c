@@ -27,11 +27,24 @@ struct node* insert(struct node *rear, int key) {
 	return rear;
 }
 
+void display(struct node *rear) {
+	struct node *ptr = rear;
+	printf("The members are: \n");
+	do {
+		printf("%d ", ptr->key);
+		ptr = ptr->next;
+	} while(ptr != rear);
+	printf("\n");
+}
+
+
 struct node *deleteAndReplace(struct node *ptr, struct node *rear) {
 	if (ptr == rear && ptr->visited == 1 && deleteCount == n - 1) {
 		rear = rear->next;
 	}
 	if (ptr->visited == 1 && deleteCount != n - 1) {
+		printf("Skipped\n");
+		display(rear);
 		return rear;
 		
 	}
@@ -40,6 +53,7 @@ struct node *deleteAndReplace(struct node *ptr, struct node *rear) {
 		deleteCount++;
 		srand(time(NULL));
 		ptr->key = rand() % 200;
+		display(ptr);
 	}
 	return rear;
 }
@@ -60,25 +74,16 @@ struct node *deleteNode(struct node *rear, int pos) {
 	return deleteAndReplace(ptr, rear);
 }
 
-void display(struct node *rear) {
-	struct node *ptr = rear;
-	printf("The members are: \n");
-	do {
-		printf("%d ", ptr->key);
-		ptr = ptr->next;
-	} while(ptr != rear);
-	printf("\n");
-}
-
 int winner(struct node *rear) {
 	int count = n;
 	while (deleteCount != n - 1) {
 		srand(time(NULL));
 		rear = deleteNode(rear, rand() % count);
-		display(rear);
+		// display(rear);
 	}
 	struct node *p, *q;
 	p = q = rear;
+	printf("Replaced n - 1 elements, initiating musical chairs program\n");
 	while (p->next != p) {
 		srand(time(NULL));
     	int k = (rand() % count) + 1;
