@@ -111,14 +111,27 @@ int winner(struct node *rear) {
 int main() {
 	FILE *p = fopen("input.txt", "r");
 	struct node *rear = NULL;
-	int key;
+	int key, tests;
 	// printf("Enter the number of participants: ");
-	fscanf(p, "%d", &n);
-	for (int i = 0; i < n; i++) {
+	fscanf(p, "%d", &tests);
+	while (--tests) {
+		printf("%d\n", tests);
+		fscanf(p, "%d", &n);
+		if (n == 0) {
+			printf("The elements must be greater than 1\n");
+			continue;
+		}
+		else if (n == 1) {
+			fscanf(p, "%d", &key);
+			printf("The winner is: %d\n", key);
+			continue;
+		}
+		for (int i = 0; i < n; i++) {
 		// printf("Enter the key: ");
-		fscanf(p, "%d", &key);
-		rear = insert(rear, key);
+			fscanf(p, "%d", &key);
+			rear = insert(rear, key);
+		}
+		printf("The winner is: %d\n", winner(rear));
 	}
-	printf("The winner is: %d\n", winner(rear));
 	return 0;
 }
