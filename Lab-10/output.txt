@@ -1,0 +1,5 @@
+
+Test Case: 1
+The number of paths is/are: 3
+Test Case: 2
+The number of paths is/are: 0
